@@ -1,6 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        /* always present */
+        .expand-transition {
+            transition: all .3s ease;
+            height: 30px;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        /* .expand-enter defines the starting state for entering */
+        /* .expand-leave defines the ending state for leaving */
+        .expand-enter, .expand-leave {
+            height: 0;
+            padding: 0 10px;
+            opacity: 0;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -15,8 +32,8 @@
                             <thead>
                             <tr>
                                 <th style="width: 20px;">No.</th>
-                                <th style="width: 80px;">Qty</th>
                                 <th>Description</th>
+                                <th style="width: 80px;">Qty</th>
                                 <th style="width: 130px;" class="text-right">Price</th>
                                 <th style="width: 90px;">Tax</th>
                                 <th style="width: 130px;">Total</th>
@@ -24,15 +41,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="row in rows">
+                            <tr v-for="row in rows" transition="expand" id="sortable">
                                 <td>
                                     @{{ $index +1 }}
                                 </td>
                                 <td>
-                                    <input class="form-control" v-model="row.qty" number/>
+                                    <input class="form-control" v-model="row.description"/>
                                 </td>
                                 <td>
-                                    <input class="form-control" v-model="row.description"/>
+                                    <input class="form-control" v-model="row.qty" number/>
                                 </td>
                                 <td>
                                     <input class="form-control text-right" v-model="row.price | currencyDisplay" number data-type="currency"/>
