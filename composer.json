@@ -6,7 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "illuminate/validation": "^5.2",
+        "illuminate/html": "^5.0",
+        "graham-campbell/flysystem": "^3.3",
+        "league/flysystem-dropbox": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +24,11 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/', 'DashboardController@index');
+Route::post('api/data', function (Request $request)
+{
+    dd($request->all());
 });
+
+
+Route::get('/', 'HomeController@index');
+
