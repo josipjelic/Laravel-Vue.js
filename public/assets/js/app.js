@@ -10,6 +10,10 @@ Vue.filter('currencyDisplay', {
         return accounting.unformat(val, ",");
     }
 });
+
+var el = document.getElementById('sortable');
+var sortable = Sortable.create(el);
+
 var vm = new Vue({
     el: '#app',
     data: {

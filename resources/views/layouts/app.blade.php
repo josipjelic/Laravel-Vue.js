@@ -77,6 +77,7 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/assets/js/sortable.min.js"></script>
     <script src="/assets/js/accounting.js"></script>
     <script src="/assets/js/vue.js"></script>
     <script src="/assets/js/app.js"></script>
