@@ -1,23 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        /* always present */
-        .expand-transition {
-            transition: all .3s ease;
-            height: 30px;
-            padding: 10px;
-            overflow: hidden;
-        }
-
-        /* .expand-enter defines the starting state for entering */
-        /* .expand-leave defines the ending state for leaving */
-        .expand-enter, .expand-leave {
-            height: 0;
-            padding: 0 10px;
-            opacity: 0;
-        }
-    </style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -40,8 +23,8 @@
                                 <th style="width: 130px;"></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr v-for="row in rows" transition="expand" id="sortable">
+                            <tbody v-sortable.tr="rows">
+                            <tr v-for="row in rows" track-by="$index">
                                 <td>
                                     @{{ $index +1 }}
                                 </td>
@@ -62,8 +45,8 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input class="form-control text-right" v-model="row.total | currencyDisplay" :value="row.qty * row.price" number readonly/>
-                                    <input type="hidden" v-model="row.tax_amount | currencyDisplay" :value="row.qty * row.price * row.tax / 100" number/>
+                                    <input class="form-control text-right" :value="row.qty * row.price | currencyDisplay" v-model="row.total | currencyDisplay" number readonly />
+                                    <input type="hidden" :value="row.qty * row.price * row.tax / 100" v-model="row.tax_amount | currencyDisplay" number/>
                                 </td>
                                 <td>
                                     <button class="btn btn-primary btn-xs" @click="addRow($index)">add row</button>
