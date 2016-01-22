@@ -12,10 +12,8 @@ Vue.filter('currencyDisplay', {
 });
 
 Vue.directive('sortable', {
-    twoWay: true,
-    deep: true,
     bind: function () {
-        var that = this;
+        var self = this;
 
         var options = {
             draggable: Object.keys(this.modifiers)[0]
@@ -25,18 +23,18 @@ Vue.directive('sortable', {
         console.log('sortable bound!')
 
         this.sortable.option("onUpdate", function (e) {
-            console.log("update-1");
-            that.value.splice(e.newIndex, 0, that.value.splice(e.oldIndex, 1)[0]);
+            self.value.splice(e.newIndex, 0, self.value.splice(e.oldIndex, 1)[0]);
         });
 
         this.onUpdate = function(value) {
-            console.log("update-3");
-            that.value = value;
+            self.value = value;
         }
     },
     update: function (value) {
-        console.log("update-2");
         this.onUpdate(value);
+    },
+    unbind : function() {
+        this.sortable.destroy();
     }
 });
 
